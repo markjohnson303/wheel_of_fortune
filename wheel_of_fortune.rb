@@ -8,14 +8,16 @@ class WheelOfFortune
   end
 
   def to_s
-    nil
+    
+    @phrase.gsub(/[^ #{Regexp.escape(@guesses.to_s)}]/i, '_') 
   end
 
-  def can_i_have?(input)
-    guess = :input.to_s
-    @phrase.include? guess
+  def can_i_have?(letter)
+    guess = letter.to_s.downcase
+    guesses << guess
+    phrasedown = @phrase.downcase.split(//)
+    phrasedown.include? guess
   end
-
 
   def game_over?
     nil
